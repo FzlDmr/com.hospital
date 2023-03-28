@@ -1,13 +1,16 @@
-package practice.hospital;
+package hospital.Methods;
 
 
-import static practice.hospital.ayaktaHasta.AyaktaHastaliklar.ayaktaHastaliklar;
-import static practice.hospital.ayaktaHasta.AyaktaMethodlar.*;
-import static practice.hospital.yatanHasta.YatanHastaliklar.yatanHastaliklar;
-import static practice.hospital.yatanHasta.YatanMethodlar.*;
-import static practice.hospital.yatanHasta.YatanMethodlar.sinirHastaliklari;
+import hospital.Renk;
 
-public class Methodlar implements Renk {
+import static hospital.Depo.*;
+import static hospital.ayaktaHasta.AyaktaHastaliklar.*;
+import static hospital.Methods.AyaktaMethodlar.*;
+import static hospital.yatanHasta.YatanHastaliklar.*;
+import static hospital.Methods.YatanMethodlar.*;
+
+
+public class Methodlar extends HastaTaburcu implements Renk {
     private static void ayaktaHastalikSec() {
         switch (ayaktaHastalikSecim) {
             case "1":
@@ -50,15 +53,9 @@ public class Methodlar implements Renk {
         }
 
     }
-    public static void hastaTaburcu() {
-        System.out.println("Gecmis olsun");
-        for (int i = 0; i <ciltHastaIdList.size() ; i++) {
-            System.out.println(ciltHastaIdList.get(i)+" "+ciltHastaKimlikNoList.get(i)+
-                    ciltHastaIsimList.get(i)+" "+ciltHastaSoyisimList.get(i)+" "+ciltHastaFiyatList.get(i));
-        }
-    }
 
-    static void yanlisSecim() {
+
+    protected static void yanlisSecim() {
         System.out.println("Yanlis secim yaptiniz");
         for (int i = 1; i <= 3; i++) {
             try {
@@ -68,7 +65,7 @@ public class Methodlar implements Renk {
             }
             System.out.print(".");
         }
-          System.out.println("");
+        System.out.println();
 
     }
 
@@ -82,31 +79,33 @@ public class Methodlar implements Renk {
             }
             System.out.print(".");
         }
-        System.out.println("");
+        System.out.println();
     }
 
-    static void kullaniciBilgileriAl() {
-        kullaniciIsimAl();
+    protected static void kullaniciBilgileriAl() {
+        kullaniciKimlikNoAl();
+
     }
 
     private static void kullaniciKimlikNoAl() {
         System.out.println(KIRMIZI + "Kimlik No Giriniz" + YESIL);
         hastaKimlikNo = scan.next();
         hastaKimlikNoList.add(hastaKimlikNo);
-        if (hastaKimlikNo.replaceAll("[^0-9]","").length() !=11){
+        if (hastaKimlikNo.replaceAll("[^0-9]", "").length() != 11) {
             yanlisGiris();
             kullaniciBilgileriAl();
         }
-        hastaIdList.add(id++);
+        id=rnd.nextInt(1000);
+        hastaIdList.add(id);
+           kullaniciIsimAl();
 
-        tedaviTuruSec();
     }
 
     private static void kullaniciSoyisimAl() {
         System.out.println(KIRMIZI + "Soyisim Giriniz" + YESIL);
         hastaSoyisim = scan.next();
         hastaSoyisimList.add(hastaSoyisim);
-        kullaniciKimlikNoAl();
+        tedaviTuruSec();
     }
 
     private static void kullaniciIsimAl() {
@@ -117,13 +116,25 @@ public class Methodlar implements Renk {
     }
 
     public static void hastaListesiGoruntule() {
-        for (int i = 0; i <hastaIsimList.size() ; i++) {
+        for (int i = 0; i < hastaIsimList.size(); i++) {
             System.out.println("========================");
-            System.out.println("Kimlik No: "+hastaKimlikNoList.get(i));
-            System.out.println("Isim     : "+hastaIsimList.get(i));
-            System.out.println("Soyisim  : "+hastaSoyisimList.get(i));
+            System.out.println("Kimlik No: " + hastaKimlikNoList.get(i));
+            System.out.println("Isim     : " + hastaIsimList.get(i));
+            System.out.println("Soyisim  : " + hastaSoyisimList.get(i));
 
         }
+        System.out.println("Yapmak istediginiz islemi seciniz\n1- Hasta Taburcu\n2- Ana Menu");
+        menuSecim = scan.next();
+        switch (menuSecim) {
+            case "1":
+                hastaTaburcu();
+            case "2":
+                menu();
+            default:
+                yanlisSecim();
+                hastaListesiGoruntule();
+        }
+
 
     }
 
@@ -146,5 +157,28 @@ public class Methodlar implements Renk {
                 tedaviTuruSec();
         }
     }
+
+    public static void menu() {
+        System.out.println(YESIL + "************************\nHastanemize Hosgeldiniz\n************************\n");
+        System.out.println("Yapmak istediginiz islemi seciniz\n1- Hasta Giris\n2- Hasta Taburcu\n3- Hasta Listesi Goruntule \n4- cikis");
+        menuSecim = scan.next();
+        switch (menuSecim) {
+            case "1":
+                kullaniciBilgileriAl();
+            case "2":
+                hastaTaburcu();
+                break;
+            case "3":
+                hastaListesiGoruntule();
+            case "4":
+                System.out.println("Bizi Tercih Ettiginiz icin Tesekkur Ederiz");
+                System.exit(0);
+            default:
+                yanlisSecim();
+        }
+
+
+    }
+
 
 }

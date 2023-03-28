@@ -1,4 +1,4 @@
-package practice.hospital.yatanHasta;
+package hospital.yatanHasta;
 
 import java.util.List;
 

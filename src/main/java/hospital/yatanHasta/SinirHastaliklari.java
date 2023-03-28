@@ -1,6 +1,7 @@
-package practice.hospital.yatanHasta;
+package hospital.yatanHasta;
 
-import practice.hospital.Depo;
+
+import hospital.Depo;
 
 public class SinirHastaliklari extends Depo implements YatanHastaliklar {
 

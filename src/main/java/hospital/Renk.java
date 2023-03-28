@@ -1,4 +1,4 @@
-package practice.hospital;
+package hospital;
 
 import java.util.Random;
 import java.util.Scanner;

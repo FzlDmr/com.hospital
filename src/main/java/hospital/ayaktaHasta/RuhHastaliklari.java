@@ -1,6 +1,7 @@
-package practice.hospital.ayaktaHasta;
+package hospital.ayaktaHasta;
 
-import practice.hospital.Depo;
+
+import hospital.Depo;
 
 public class RuhHastaliklari extends Depo implements AyaktaHastaliklar{
 
