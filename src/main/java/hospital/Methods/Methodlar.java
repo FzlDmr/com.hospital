@@ -69,6 +69,22 @@ public class Methodlar extends HastaTaburcu implements Renk {
 
     }
 
+    protected static void menuYonlendir() {
+        sayac = 0;
+        System.out.println("Cok sayida hatali giris yaptiniz\nAna menu`ye yonlendirliyorsunuz");
+        for (int i = 1; i <= 3; i++) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.print(".");
+        }
+        System.out.println();
+        menu();
+
+    }
+
     static void yanlisGiris() {
         System.out.println("Yanlis Kimlik No Girdiniz \n Kimlik No sadece rakamlardan olusmalidir\n kimlik no 11 hane olmalidir");
         for (int i = 1; i <= 3; i++) {
@@ -90,14 +106,21 @@ public class Methodlar extends HastaTaburcu implements Renk {
     private static void kullaniciKimlikNoAl() {
         System.out.println(KIRMIZI + "Kimlik No Giriniz" + YESIL);
         hastaKimlikNo = scan.next();
-        hastaKimlikNoList.add(hastaKimlikNo);
         if (hastaKimlikNo.replaceAll("[^0-9]", "").length() != 11) {
+            sayac++;
             yanlisGiris();
-            kullaniciBilgileriAl();
+            if (sayac==3){
+                menuYonlendir();
+            }
+
+            kullaniciKimlikNoAl();
         }
-        id=rnd.nextInt(1000);
+
+
+        hastaKimlikNoList.add(hastaKimlikNo);
+        id = rnd.nextInt(1000);
         hastaIdList.add(id);
-           kullaniciIsimAl();
+        kullaniciIsimAl();
 
     }
 

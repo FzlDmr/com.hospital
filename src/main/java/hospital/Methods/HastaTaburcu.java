@@ -4,8 +4,7 @@ import java.time.LocalDateTime;
 
 import static hospital.Depo.*;
 import static hospital.Depo.idIndex;
-import static hospital.Methods.Methodlar.menu;
-import static hospital.Methods.Methodlar.yanlisSecim;
+import static hospital.Methods.Methodlar.*;
 import static hospital.Renk.scan;
 
 public class HastaTaburcu extends Fatura {
@@ -25,13 +24,15 @@ public class HastaTaburcu extends Fatura {
             menu();
         }
         System.out.println("Gecmis olsun");
-        System.out.println("Hasta Id   Hasta Kimlik No    Hasta Isim     Hasta Soyisim");
-        System.out.println("----------------------------------------------------------");
+        System.out.printf("%6s  %15s  %13s %17s ","Hasta Id" ,  "Hasta Kimlik No" ,   "Hasta Isim"   ,  "Hasta Soyisim");
+        System.out.println();
+        System.out.println("----------------------------------------------------------------------------");
 
 
         for (int i = 0; i <hastaIdList.size() ; i++) {
-            System.out.println(hastaIdList.get(i) + "       " + hastaKimlikNoList.get(i) + " " +
-                    hastaIsimList.get(i) + " " + hastaSoyisimList.get(i));
+            System.out.printf("%6d   %15s  %13s %17s ",hastaIdList.get(i) , hastaKimlikNoList.get(i),
+                    hastaIsimList.get(i) ,hastaSoyisimList.get(i));
+            System.out.println();
 
         }
 
@@ -40,27 +41,37 @@ public class HastaTaburcu extends Fatura {
             id = Integer.parseInt(scan.next());
         } catch (NumberFormatException e) {
             System.out.println("Yanlis giris yaptiniz");
+            sayac++;
+            if (sayac==3){
+                menuYonlendir();
+            }
             hastaTaburcu();
         }
 
         if (!hastaIdList.contains(id)) {
             System.out.println("Yanlis Id Girdiniz");
+            sayac++;
+            if (sayac==3){
+                menuYonlendir();
+            }
             hastaTaburcu();
         }
 
 
-        System.out.println("Hasta Id   Hasta Kimlik No    Hasta Isim     Hasta Soyisim      Giris Tarihi       Cikis Tarihi       Fiyat ");
-        System.out.println("------------------------------------------------------------------------------------------------------------ ");
+        System.out.printf(" %-11s %16s %18s %18s %25s %25s %20s","Hasta Id" ,  "Hasta Kimlik No" ,   "Hasta Isim"  ,   "Hasta Soyisim"  ,
+                "Giris Tarihi"   ,  "Cikis Tarihi"    ,   "Fiyat" );
+        System.out.println();
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------- ");
 
         if (acilHastaIdList.contains(id)) {
             acilHastaTaburcuTarih.add(time);
             idIndex = acilHastaIdList.indexOf(id);
+                System.out.format(" %-11d %16s %18s %18s %25s %25s %10s",acilHastaIdList.get(idIndex) , acilHastaKimlikNoList.get(idIndex) ,
+                        acilHastaIsimList.get(idIndex) , acilHastaSoyisimList.get(idIndex) ,
+                        acilHastaGirisTarih.get(idIndex) ,time , acilHastaFiyatList.get(idIndex));
 
-                System.out.println(acilHastaIdList.get(idIndex) + "       " + acilHastaKimlikNoList.get(idIndex) + "         "
-                        + acilHastaIsimList.get(idIndex) + "         " + acilHastaSoyisimList.get(idIndex) + "      " +
-                        acilHastaGirisTarih.get(idIndex) + "   " + time + "    " + acilHastaFiyatList.get(idIndex));
 
-
+            System.out.println();
 
         }
 
@@ -69,11 +80,11 @@ public class HastaTaburcu extends Fatura {
             ciltHastaTaburcuTarih.add(time);
             idIndex = ciltHastaIdList.indexOf(id);
 
-                System.out.println(ciltHastaIdList.get(idIndex) + " " + ciltHastaKimlikNoList.get(idIndex) + ""
-                        + ciltHastaIsimList.get(idIndex) + " " + ciltHastaSoyisimList.get(idIndex) + " " +
-                        ciltHastaGirisTarih.get(idIndex) + " " + time + " " + ciltHastaFiyatList.get(idIndex));
+            System.out.format(" %-11d %16s %18s %18s %25s %25s %10s",ciltHastaIdList.get(idIndex) , ciltHastaKimlikNoList.get(idIndex) ,
+                        ciltHastaIsimList.get(idIndex) , ciltHastaSoyisimList.get(idIndex) ,
+                        ciltHastaGirisTarih.get(idIndex) , time, ciltHastaFiyatList.get(idIndex));
 
-
+            System.out.println();
 
         }
 
@@ -81,10 +92,10 @@ public class HastaTaburcu extends Fatura {
             cocukHastaTaburcuTarih.add(time);
             idIndex = cocukHastaIdList.indexOf(id);
 
-                System.out.println(cocukHastaIdList.get(idIndex) + " " + cocukHastaKimlikNoList.get(idIndex) + ""
-                        + cocukHastaIsimList.get(idIndex) + " " + cocukHastaSoyisimList.get(idIndex) + " " +
-                        cocukHastaGirisTarih.get(idIndex) + " " + time + " " + cocukHastaFiyatList.get(idIndex));
-
+            System.out.format(" %-11d %16s %18s %18s %25s %25s %10s",cocukHastaIdList.get(idIndex) , cocukHastaKimlikNoList.get(idIndex) ,
+                         cocukHastaIsimList.get(idIndex) , cocukHastaSoyisimList.get(idIndex) ,
+                        cocukHastaGirisTarih.get(idIndex) , time , cocukHastaFiyatList.get(idIndex));
+            System.out.println();
 
         }
 
@@ -93,10 +104,10 @@ public class HastaTaburcu extends Fatura {
             idIndex = ruhHastaIdList.indexOf(id);
 
 
-                System.out.println(ruhHastaIdList.get(idIndex) + " " + ruhHastaKimlikNoList.get(idIndex) + ""
-                        + ruhHastaIsimList.get(idIndex) + " " + ruhHastaSoyisimList.get(idIndex) + " " +
-                        ruhHastaGirisTarih.get(idIndex) + " " + time + " " + ruhHastaFiyatList.get(idIndex));
-
+            System.out.format(" %-11d %16s %18s %18s %25s %25s %10s",ruhHastaIdList.get(idIndex) ,ruhHastaKimlikNoList.get(idIndex) ,
+                        ruhHastaIsimList.get(idIndex), ruhHastaSoyisimList.get(idIndex) ,
+                        ruhHastaGirisTarih.get(idIndex),time ,ruhHastaFiyatList.get(idIndex));
+            System.out.println();
 
 
         }
@@ -106,10 +117,10 @@ public class HastaTaburcu extends Fatura {
             idIndex = genelCerrahHastaIdList.indexOf(id);
 
 
-                System.out.println(genelCerrahHastaIdList.get(idIndex) + " " + genelCerrahHastaKimlikNoList.get(idIndex) + ""
-                        + genelCerrahHastaIsimList.get(idIndex) + " " + genelCerrahHastaSoyisimList.get(idIndex) + " " +
-                        genelCerrahHastaGirisTarih.get(idIndex) + " " + time + " " + genelCerrahHastaFiyatList.get(idIndex));
-
+            System.out.format(" %-11d %16s %18s %18s %25s %25s %10s",genelCerrahHastaIdList.get(idIndex) ,genelCerrahHastaKimlikNoList.get(idIndex)
+                      , genelCerrahHastaIsimList.get(idIndex) , genelCerrahHastaSoyisimList.get(idIndex) ,
+                        genelCerrahHastaGirisTarih.get(idIndex) , time, genelCerrahHastaFiyatList.get(idIndex));
+            System.out.println();
 
 
         }
@@ -119,10 +130,10 @@ public class HastaTaburcu extends Fatura {
             idIndex = icHastalikIdList.indexOf(id);
 
 
-                System.out.println(icHastalikIdList.get(idIndex) + " " + icHastalikHastaKimlikNoList.get(idIndex) + ""
-                        + icHastalikHastaIsimList.get(idIndex) + " " + icHastalikHastaSoyisimList.get(idIndex) + " " +
-                        icHastalikHastaGirisTarih.get(idIndex) + " " + LocalDateTime.now() + " " + icHastalikHastaFiyatList.get(idIndex));
-
+            System.out.format(" %-11d %16s %18s %18s %25s %25s %10s",icHastalikIdList.get(idIndex) , icHastalikHastaKimlikNoList.get(idIndex) ,
+                         icHastalikHastaIsimList.get(idIndex) , icHastalikHastaSoyisimList.get(idIndex),
+                        icHastalikHastaGirisTarih.get(idIndex) , LocalDateTime.now() , icHastalikHastaFiyatList.get(idIndex));
+            System.out.println();
 
 
         }
@@ -132,11 +143,12 @@ public class HastaTaburcu extends Fatura {
             kalpHastalikHastaTaburcuTarih.add(time);
             idIndex = kalpHastalikIdList.indexOf(id);
 
-                System.out.println(kalpHastalikIdList.get(idIndex) + " " + kalpHastalikHastaKimlikNoList.get(idIndex) + ""
-                        + kalpHastalikHastaIsimList.get(idIndex) + " " + kalpHastalikHastaSoyisimList.get(idIndex) + " " +
-                        kalpHastalikHastaGirisTarih.get(idIndex) + " " + time + " " + kalpHastalikHastaFiyatList.get(idIndex));
 
+            System.out.format(" %-11d %16s %18s %18s %25s %25s %10s",kalpHastalikIdList.get(idIndex) , kalpHastalikHastaKimlikNoList.get(idIndex),
+                        kalpHastalikHastaIsimList.get(idIndex) ,kalpHastalikHastaSoyisimList.get(idIndex),
+                        kalpHastalikHastaGirisTarih.get(idIndex) ,time , kalpHastalikHastaFiyatList.get(idIndex));
 
+            System.out.println();
 
         }
 
@@ -144,10 +156,11 @@ public class HastaTaburcu extends Fatura {
             sinirHastalikHastaTaburcuTarih.add(time);
             idIndex = sinirHastalikIdList.indexOf(id);
 
-                System.out.println(sinirHastalikIdList.get(idIndex) + " " + sinirHastalikHastaKimlikNoList.get(idIndex) + ""
-                        + sinirHastalikHastaIsimList.get(idIndex) + " " + sinirHastalikHastaSoyisimList.get(idIndex) + " " +
-                        sinirHastalikHastaGirisTarih.get(idIndex) + " " + time + " " + sinirHastalikHastaFiyatList.get(idIndex));
+            System.out.format(" %-11d %16s %18s %18s %25s %25s %10s" ,sinirHastalikIdList.get(idIndex) ,sinirHastalikHastaKimlikNoList.get(idIndex),
+                    sinirHastalikHastaIsimList.get(idIndex) ,sinirHastalikHastaSoyisimList.get(idIndex),
+                    sinirHastalikHastaGirisTarih.get(idIndex),time,sinirHastalikHastaFiyatList.get(idIndex));
 
+            System.out.println();
 
         }
 

@@ -22,6 +22,7 @@ public class Depo {
     public static int id ;
     public static String menuSecim;
     public static int idIndex;
+    public  static int sayac=0;
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm") ;
     public static LocalDateTime ldTime=LocalDateTime.now();
     public static String time=ldTime.format(formatter);

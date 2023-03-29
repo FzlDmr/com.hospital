@@ -12,19 +12,22 @@ public class Fatura {
 
     public static void faturaOlustur() {
 
-        System.out.println("--------------------------------------------------------------------\n" +
-                "--------------------- DevTeam 3 Hastane Faturasi--------------------\n" +
-                "-------------------------------------------------------------------- ");
+        System.out.println(
+                "---------------------------------------------------------------------------------------\n" +
+                "--------------------- DevTeam 3 Hastane Faturasi-------------------------\n" +
+                "-------------------------------------------------------------------------------------- ");
 
-        System.out.println("Hasta Id   Hasta Kimlik No    Hasta Isim     Hasta Soyisim     Fiyat ");
-        System.out.println("----------------------------------------------------------------------");
+        System.out.printf(" %-11s %16s %18s %18s %20s","Hasta Id" ,  "Hasta Kimlik No" ,   "Hasta Isim"  ,   "Hasta Soyisim"  , "Fiyat" );
+        System.out.println();
+        System.out.println("-------------------------------------------------------------------------------------");
 
         if (acilHastaIdList.contains(id)) {
             acilHastaTaburcuTarih.add(time);
             idIndex = acilHastaIdList.indexOf(id);
-            System.out.println(acilHastaIdList.get(idIndex) + "       " + acilHastaKimlikNoList.get(idIndex) + "         "
-                    + acilHastaIsimList.get(idIndex) + "         " + acilHastaSoyisimList.get(idIndex) + "      " +
-                    acilHastaGirisTarih.get(idIndex) + "   " + time + "    " + acilHastaFiyatList.get(idIndex));
+            System.out.format(" %-11d %16s %18s %18s %10s",acilHastaIdList.get(idIndex) , acilHastaKimlikNoList.get(idIndex) ,
+                      acilHastaIsimList.get(idIndex) , acilHastaSoyisimList.get(idIndex) ,
+                    acilHastaFiyatList.get(idIndex));
+            System.out.println();
 
             hastaIdList.remove(acilHastaIdList.get(idIndex));
             hastaIsimList.remove(acilHastaIsimList.get(idIndex));
@@ -46,10 +49,10 @@ public class Fatura {
             ciltHastaTaburcuTarih.add(time);
             idIndex = ciltHastaIdList.indexOf(id);
 
-            System.out.println(ciltHastaIdList.get(idIndex) + " " + ciltHastaKimlikNoList.get(idIndex) + ""
-                    + ciltHastaIsimList.get(idIndex) + " " + ciltHastaSoyisimList.get(idIndex) + " " +
-                    ciltHastaGirisTarih.get(idIndex) + " " + time + " " + ciltHastaFiyatList.get(idIndex));
-
+            System.out.format(" %-11d %16s %18s %18s %10s" ,ciltHastaIdList.get(idIndex),ciltHastaKimlikNoList.get(idIndex) ,
+                     ciltHastaIsimList.get(idIndex) ,ciltHastaSoyisimList.get(idIndex)
+                    , ciltHastaFiyatList.get(idIndex));
+            System.out.println();
 
             hastaIdList.remove(ciltHastaIdList.get(idIndex));
             hastaIsimList.remove(ciltHastaIsimList.get(idIndex));
@@ -70,9 +73,11 @@ public class Fatura {
             cocukHastaTaburcuTarih.add(time);
             idIndex = cocukHastaIdList.indexOf(id);
 
-                System.out.println(cocukHastaIdList.get(idIndex) + " " + cocukHastaKimlikNoList.get(idIndex) + ""
-                        + cocukHastaIsimList.get(idIndex) + " " + cocukHastaSoyisimList.get(idIndex) + " " +
+            System.out.format(" %-11d %16s %18s %18s %10s" ,cocukHastaIdList.get(idIndex) ,
+                    cocukHastaKimlikNoList.get(idIndex) , cocukHastaIsimList.get(idIndex)
+                    ,cocukHastaSoyisimList.get(idIndex) ,
                         cocukHastaFiyatList.get(idIndex));
+            System.out.println();
 
             hastaIdList.remove(cocukHastaIdList.get(idIndex));
             hastaIsimList.remove(cocukHastaIsimList.get(idIndex));
@@ -99,6 +104,7 @@ public class Fatura {
                         + ruhHastaIsimList.get(idIndex) + " " + ruhHastaSoyisimList.get(idIndex) + " " +
                         ruhHastaFiyatList.get(idIndex));
 
+            System.out.println();
             hastaIdList.remove(ruhHastaIdList.get(idIndex));
             hastaIsimList.remove(ruhHastaIsimList.get(idIndex));
             hastaSoyisimList.remove(ruhHastaSoyisimList.get(idIndex));
@@ -125,6 +131,7 @@ public class Fatura {
                         + genelCerrahHastaIsimList.get(idIndex) + " " + genelCerrahHastaSoyisimList.get(idIndex) + " " +
                         genelCerrahHastaFiyatList.get(idIndex));
 
+            System.out.println();
             hastaIdList.remove(genelCerrahHastaIdList.get(idIndex));
             hastaIsimList.remove(genelCerrahHastaIsimList.get(idIndex));
             hastaSoyisimList.remove(genelCerrahHastaSoyisimList.get(idIndex));
@@ -150,6 +157,7 @@ public class Fatura {
                         + icHastalikHastaIsimList.get(idIndex) + " " + icHastalikHastaSoyisimList.get(idIndex) + " " +
                         icHastalikHastaFiyatList.get(idIndex));
 
+            System.out.println();
             hastaIdList.remove(icHastalikIdList.get(idIndex));
             hastaIsimList.remove(icHastalikHastaIsimList.get(idIndex));
             hastaSoyisimList.remove(icHastalikHastaSoyisimList.get(idIndex));
@@ -175,6 +183,7 @@ public class Fatura {
                         + kalpHastalikHastaIsimList.get(idIndex) + " " + kalpHastalikHastaSoyisimList.get(idIndex) + " " +
                         kalpHastalikHastaFiyatList.get(idIndex));
 
+            System.out.println();
             hastaIdList.remove(kalpHastalikIdList.get(idIndex));
             hastaIsimList.remove(kalpHastalikHastaIsimList.get(idIndex));
             hastaSoyisimList.remove(kalpHastalikHastaSoyisimList.get(idIndex));
@@ -199,7 +208,7 @@ public class Fatura {
                 System.out.println(sinirHastalikIdList.get(idIndex) + " " + sinirHastalikHastaKimlikNoList.get(idIndex) + ""
                         + sinirHastalikHastaIsimList.get(idIndex) + " " + sinirHastalikHastaSoyisimList.get(idIndex) + " " +
                         sinirHastalikHastaFiyatList.get(idIndex));
-
+            System.out.println();
 
             hastaIdList.remove(sinirHastalikIdList.get(idIndex));
             hastaIsimList.remove(sinirHastalikHastaIsimList.get(idIndex));
